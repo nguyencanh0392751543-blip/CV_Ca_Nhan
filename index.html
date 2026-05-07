@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nguyễn Minh Cảnh | Portfolio</title>
+  <title>Nguyễn Minh Cảnh | Creative Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Theme toggle input for dark mode -->
-  <input id="theme-toggle" class="theme-toggle-input" type="checkbox" hidden aria-label="Chuyển đổi chế độ" />
+  <!-- Theme toggle for dark mode -->
+  <input id="theme-toggle" class="theme-toggle-input" type="checkbox" hidden aria-label="Chuyển đổi giao diện" />
 
   <div class="page-shell">
-    <!-- Header / top navigation inspired by a creative CV --><header class="topbar">
-      <div class="topbar-group">
-        <a class="topbar-brand" href="#">Portfolio</a>
-        <span class="topbar-pill">UI/UX Designer</span>
+    <header class="topbar">
+      <div class="topbar-left">
+        <a class="topbar-logo" href="#home">Resume</a>
+        <span class="topbar-pill">Graphic Designer</span>
+        <span class="topbar-pill">UI/UX</span>
         <span class="topbar-pill">Game Design</span>
       </div>
-      <div class="topbar-group">
+      <div class="topbar-right">
         <span class="year-badge">2026</span>
         <label class="theme-switch" for="theme-toggle" aria-label="Bật chế độ tối">
           <span class="theme-icon">🌙</span>
@@ -26,93 +27,118 @@
     </header>
 
     <main class="content">
-      <!-- Hero section with split layout -->
+      <!-- Hero Section -->
       <section class="hero-section" id="home">
         <div class="hero-grid">
-          <article class="hero-card hero-media">
-            <div class="hero-image">
-              <img src="hero-photo.jpg" alt="Ảnh đại diện Nguyễn Minh Cảnh" />
+          <figure class="hero-card hero-image-card">
+            <div class="hero-image-frame">
+              <img id="profilePhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Crect width='800' height='1000' fill='%23d98d3c'/%3E%3Ccircle cx='400' cy='320' r='140' fill='%23f8d7a5'/%3E%3Crect x='220' y='520' width='360' height='360' rx='180' fill='%23f8d7a5'/%3E%3C/svg%3E" alt="Ảnh đại diện Nguyễn Minh Cảnh" />
+              <div class="hero-photo-overlay">
+                <label for="profileUpload" class="photo-upload-button">Thay ảnh</label>
+                <input id="profileUpload" type="file" accept="image/*" hidden />
+              </div>
             </div>
-            <div class="hero-tag">Digital Graphics</div>
-          </article>
+            <figcaption class="hero-image-note">Upload ảnh để cá nhân hóa</figcaption>
+          </figure>
 
           <article class="hero-card hero-copy">
-            <div class="hero-label">UI/UX Designer Student • Digital Graphics</div>
+            <span class="hero-chip">UI/UX Designer Student • Digital Graphics</span>
             <h1>Nguyễn Minh Cảnh</h1>
             <a class="email-badge" href="mailto:nguyencanh0392751543@gmail.com">nguyencanh0392751543@gmail.com</a>
-            <p class="hero-intro">Là một sinh viên tại trường GDU, hiện đang học năm 2 của ngành CNNT - Đồ Họa Kỹ Thuật Số. Tôi đang tập trung vào một dự án thiết kế UI/UX và game.</p>
             <p class="hero-tagline">“Thiết kế trải nghiệm đơn giản, hiệu quả và có cảm xúc”</p>
-            <a class="button button-primary" href="#contact">Hire Me</a>
+            <p class="hero-copytext">Là một sinh viên tại trường GDU, hiện đang học năm 2 của ngành CNNT - Đồ Họa Kỹ Thuật Số. Tôi đang tập trung vào một dự án thiết kế UI/UX và game.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">Hire Me</a>
+              <button class="button button-secondary" id="uploadGraphicButton">Upload Gallery</button>
+            </div>
           </article>
         </div>
       </section>
 
-      <!-- About section inside a rounded card -->
-      <section class="section about-section" id="about">
-        <div class="section-header">
-          <span class="section-title">About me</span>
-          <h2>Chuyên môn sáng tạo và UI/UX</h2>
-        </div>
-        <article class="about-card">
-          <p>
-            Tôi là sinh viên năm 2 tại <strong>GDU</strong> chuyên ngành CNNT - <strong>Đồ Họa Kỹ Thuật Số</strong>.
-            Tôi tập trung vào <strong>UI/UX</strong>, <strong>Game Design</strong> và các giải pháp trải nghiệm số.
-          </p>
-          <div class="about-highlights">
-            <span>GDU</span>
-            <span>UI/UX</span>
-            <span>Game Design</span>
-            <span>Digital Graphics</span>
+      <!-- Graphic Designer Gallery Section -->
+      <section class="section gallery-section" id="gallery">
+        <div class="section-header gallery-header">
+          <div>
+            <span class="section-title">Graphic Design Gallery</span>
+            <h2>Thiết kế sáng tạo và poster</h2>
           </div>
-        </article>
+          <div class="gallery-actions">
+            <button class="button button-secondary" id="addGalleryImage">Thêm ảnh</button>
+            <input id="galleryUpload" type="file" accept="image/*" multiple hidden />
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <article class="gallery-card" data-title="Poster Design" data-category="Poster Design" data-description="Poster sáng tạo cho chiến dịch brand mới." data-images="poster1,poster2">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23eab676'/%3E%3Ccircle cx='480' cy='180' r='120' fill='%23d96b2f'/%3E%3Crect x='150' y='280' width='480' height='240' rx='36' fill='%23fff2e6'/%3E%3C/svg%3E" alt="Poster Design" />
+            <div class="gallery-overlay">
+              <span class="gallery-category">Poster Design</span>
+              <h3>Poster Design</h3>
+              <p>Minimal poster với gradient vàng ấm.</p>
+            </div>
+          </article>
+          <article class="gallery-card" data-title="Bookmark Design" data-category="Bookmark Design" data-description="Thiết kế bookmark 3D với màu sắc năng động." data-images="bookmark1,bookmark2">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f2cf95'/%3E%3Cpath d='M180 120h200l120 160v180H180z' fill='%23bd682a'/%3E%3Cpath d='M400 120h220v260L400 300z' fill='%23fff2e6' opacity='0.9'/%3E%3C/svg%3E" alt="Bookmark Design" />
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bookmark Design</span>
+              <h3>Bookmark Design</h3>
+              <p>Bộ sưu tập bookmark phong cách 3D.</p>
+            </div>
+          </article>
+          <article class="gallery-card" data-title="UI Design" data-category="UI Design" data-description="Giao diện app mềm mại cho trải nghiệm người dùng." data-images="ui1,ui2">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23ffddb4'/%3E%3Crect x='140' y='120' width='520' height='360' rx='40' fill='%23d0642d'/%3E%3Crect x='170' y='160' width='460' height='60' rx='30' fill='%23fff4e4'/%3E%3Crect x='170' y='260' width='460' height='160' rx='32' fill='%23f8d7a5'/%3E%3C/svg%3E" alt="UI Design" />
+            <div class="gallery-overlay">
+              <span class="gallery-category">UI Design</span>
+              <h3>UI Design</h3>
+              <p>Thiết kế giao diện mềm mại, gợi cảm hứng.</p>
+            </div>
+          </article>
+          <article class="gallery-card" data-title="3D Mockup" data-category="3D Mockup" data-description="Mockup 3D sáng tạo cho sản phẩm số." data-images="mockup1,mockup2">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f6debf'/%3E%3Cpath d='M260 220h320l-80 240H180z' fill='%23b25b23'/%3E%3Ccircle cx='520' cy='420' r='70' fill='%23fff2e6'/%3E%3C/svg%3E" alt="3D Mockup" />
+            <div class="gallery-overlay">
+              <span class="gallery-category">3D Mockup</span>
+              <h3>3D Mockup</h3>
+              <p>Hiệu ứng 3D nhẹ nhàng cho thiết kế sản phẩm.</p>
+            </div>
+          </article>
+        </div>
       </section>
 
-      <!-- Projects gallery -->
+      <!-- Projects Section -->
       <section class="section projects-section" id="projects">
         <div class="section-header">
           <span class="section-title">Projects</span>
-          <h2>Portfolio case studies</h2>
+          <h2>Case studies nổi bật</h2>
         </div>
         <div class="project-grid">
-          <article class="project-card">
+          <article class="project-card" data-project="bookmark">
             <div class="project-thumb project-thumb-1"></div>
-            <div class="project-overlay">
-              <span>Thiết kế Bookmark</span>
-            </div>
-            <div class="project-body">
-              <span class="project-category">Brand / UI</span>
+            <div class="project-info">
+              <span class="project-category">Bookmark</span>
               <h3>Thiết kế Bookmark</h3>
-              <label class="project-button" for="project-1-modal">Xem chi tiết</label>
+              <button class="project-button">Xem chi tiết</button>
             </div>
           </article>
-
-          <article class="project-card">
+          <article class="project-card" data-project="in3d">
             <div class="project-thumb project-thumb-2"></div>
-            <div class="project-overlay">
-              <span>In 3D</span>
-            </div>
-            <div class="project-body">
+            <div class="project-info">
               <span class="project-category">3D</span>
               <h3>In 3D</h3>
-              <label class="project-button" for="project-2-modal">Xem chi tiết</label>
+              <button class="project-button">Xem chi tiết</button>
             </div>
           </article>
-
-          <article class="project-card">
+          <article class="project-card" data-project="game2d">
             <div class="project-thumb project-thumb-3"></div>
-            <div class="project-overlay">
-              <span>Game 2D</span>
-            </div>
-            <div class="project-body">
+            <div class="project-info">
               <span class="project-category">Game</span>
               <h3>Game 2D</h3>
-              <label class="project-button" for="project-3-modal">Xem chi tiết</label>
+              <button class="project-button">Xem chi tiết</button>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- Skills section with icon cards -->
+      <!-- Skills Section -->
       <section class="section skills-section" id="skills">
         <div class="section-header">
           <span class="section-title">Skills</span>
@@ -127,7 +153,7 @@
         </div>
       </section>
 
-      <!-- Hobbies section -->
+      <!-- Hobbies Section -->
       <section class="section hobbies-section" id="hobbies">
         <div class="section-header">
           <span class="section-title">Hobbies</span>
@@ -141,13 +167,13 @@
         </div>
       </section>
 
-      <!-- Contact section -->
+      <!-- Contact Section -->
       <section class="section contact-section" id="contact">
         <div class="contact-card">
           <div>
             <span class="section-title">Contact</span>
             <h2>Hợp tác cùng tôi</h2>
-            <p>Gửi email đến tôi để bắt đầu dự án UI/UX hoặc game design.</p>
+            <p>Gửi email để bắt đầu dự án UI/UX hoặc game design.</p>
           </div>
           <a class="button button-primary" href="mailto:nguyencanh0392751543@gmail.com">Hire Me</a>
         </div>
@@ -155,56 +181,31 @@
     </main>
   </div>
 
-  <!-- Project Modals -->
-  <input type="checkbox" id="project-1-modal" class="modal-toggle" hidden />
-  <label class="modal-backdrop" for="project-1-modal"></label>
-  <section class="modal-panel project-modal">
-    <label class="modal-close" for="project-1-modal">×</label>
-    <h3>Thiết kế Bookmark</h3>
-    <p>Thiết kế một concept bookmark sáng tạo với phong cách yểu điệu, phù hợp cho một portfolio UI/UX hiện đại.</p>
-    <div class="modal-gallery">
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-    </div>
-    <div class="modal-meta">
-      <span>Tools: Figma, Illustrator</span>
-      <span>Process: Research → Sketch → Mockup</span>
-    </div>
-  </section>
+  <!-- Modal Overlay -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <aside class="modal-panel" id="projectModal" aria-hidden="true">
+    <button class="modal-close" id="modalClose" aria-label="Đóng modal">×</button>
+    <section class="modal-body">
+      <div class="modal-slider">
+        <button class="slider-button" id="prevSlide" aria-label="Previous image">‹</button>
+        <div class="slider-frame">
+          <img id="modalImage" src="" alt="Project preview" />
+        </div>
+        <button class="slider-button" id="nextSlide" aria-label="Next image">›</button>
+      </div>
+      <div class="modal-details">
+        <span class="project-category" id="modalCategory"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <div class="modal-meta">
+          <p><strong>Tools:</strong> <span id="modalTools"></span></p>
+          <p><strong>Process:</strong> <span id="modalProcess"></span></p>
+        </div>
+        <div class="thumbnail-bar" id="modalThumbnails"></div>
+      </div>
+    </section>
+  </aside>
 
-  <input type="checkbox" id="project-2-modal" class="modal-toggle" hidden />
-  <label class="modal-backdrop" for="project-2-modal"></label>
-  <section class="modal-panel project-modal">
-    <label class="modal-close" for="project-2-modal">×</label>
-    <h3>In 3D</h3>
-    <p>Thực hiện một trải nghiệm 3D tinh tế, kết hợp màu sắc ấm và bố cục hiện đại để nâng cao cảm giác chuyên nghiệp.</p>
-    <div class="modal-gallery">
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-    </div>
-    <div class="modal-meta">
-      <span>Tools: Photoshop, 3D mockup</span>
-      <span>Process: Concept → Render → Presentation</span>
-    </div>
-  </section>
-
-  <input type="checkbox" id="project-3-modal" class="modal-toggle" hidden />
-  <label class="modal-backdrop" for="project-3-modal"></label>
-  <section class="modal-panel project-modal">
-    <label class="modal-close" for="project-3-modal">×</label>
-    <h3>Game 2D</h3>
-    <p>Thiết kế một dự án game 2D với bố cục hiển thị minh họa, nhấn mạnh vào trải nghiệm người dùng và storytelling.</p>
-    <div class="modal-gallery">
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-      <div class="modal-image"></div>
-    </div>
-    <div class="modal-meta">
-      <span>Tools: Figma, Premiere Pro</span>
-      <span>Process: Concept → Prototype → Polish</span>
-    </div>
-  </section>
+  <script src="script.js"></script>
 </body>
 </html>
