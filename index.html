@@ -69,36 +69,52 @@
         </div>
 
         <div class="gallery-grid" id="galleryGrid">
-          <article class="gallery-card" data-title="Poster Design" data-category="Poster Design" data-description="Poster sáng tạo cho chiến dịch brand mới." data-images="poster1,poster2">
+          <article class="gallery-card" data-gallery-id="poster">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23eab676'/%3E%3Ccircle cx='480' cy='180' r='120' fill='%23d96b2f'/%3E%3Crect x='150' y='280' width='480' height='240' rx='36' fill='%23fff2e6'/%3E%3C/svg%3E" alt="Poster Design" />
             <div class="gallery-overlay">
               <span class="gallery-category">Poster Design</span>
               <h3>Poster Design</h3>
               <p>Minimal poster với gradient vàng ấm.</p>
             </div>
+            <div class="gallery-upload-btn">
+              <label for="galleryUploadPoster" class="upload-icon">📤</label>
+              <input id="galleryUploadPoster" type="file" accept="image/*" multiple hidden class="gallery-item-upload" />
+            </div>
           </article>
-          <article class="gallery-card" data-title="Bookmark Design" data-category="Bookmark Design" data-description="Thiết kế bookmark 3D với màu sắc năng động." data-images="bookmark1,bookmark2">
+          <article class="gallery-card" data-gallery-id="bookmark">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f2cf95'/%3E%3Cpath d='M180 120h200l120 160v180H180z' fill='%23bd682a'/%3E%3Cpath d='M400 120h220v260L400 300z' fill='%23fff2e6' opacity='0.9'/%3E%3C/svg%3E" alt="Bookmark Design" />
             <div class="gallery-overlay">
               <span class="gallery-category">Bookmark Design</span>
               <h3>Bookmark Design</h3>
               <p>Bộ sưu tập bookmark phong cách 3D.</p>
             </div>
+            <div class="gallery-upload-btn">
+              <label for="galleryUploadBookmark" class="upload-icon">📤</label>
+              <input id="galleryUploadBookmark" type="file" accept="image/*" multiple hidden class="gallery-item-upload" />
+            </div>
           </article>
-          <article class="gallery-card" data-title="UI Design" data-category="UI Design" data-description="Giao diện app mềm mại cho trải nghiệm người dùng." data-images="ui1,ui2">
+          <article class="gallery-card" data-gallery-id="ui">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23ffddb4'/%3E%3Crect x='140' y='120' width='520' height='360' rx='40' fill='%23d0642d'/%3E%3Crect x='170' y='160' width='460' height='60' rx='30' fill='%23fff4e4'/%3E%3Crect x='170' y='260' width='460' height='160' rx='32' fill='%23f8d7a5'/%3E%3C/svg%3E" alt="UI Design" />
             <div class="gallery-overlay">
               <span class="gallery-category">UI Design</span>
               <h3>UI Design</h3>
               <p>Thiết kế giao diện mềm mại, gợi cảm hứng.</p>
             </div>
+            <div class="gallery-upload-btn">
+              <label for="galleryUploadUI" class="upload-icon">📤</label>
+              <input id="galleryUploadUI" type="file" accept="image/*" multiple hidden class="gallery-item-upload" />
+            </div>
           </article>
-          <article class="gallery-card" data-title="3D Mockup" data-category="3D Mockup" data-description="Mockup 3D sáng tạo cho sản phẩm số." data-images="mockup1,mockup2">
+          <article class="gallery-card" data-gallery-id="mockup">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f6debf'/%3E%3Cpath d='M260 220h320l-80 240H180z' fill='%23b25b23'/%3E%3Ccircle cx='520' cy='420' r='70' fill='%23fff2e6'/%3E%3C/svg%3E" alt="3D Mockup" />
             <div class="gallery-overlay">
               <span class="gallery-category">3D Mockup</span>
               <h3>3D Mockup</h3>
               <p>Hiệu ứng 3D nhẹ nhàng cho thiết kế sản phẩm.</p>
+            </div>
+            <div class="gallery-upload-btn">
+              <label for="galleryUploadMockup" class="upload-icon">📤</label>
+              <input id="galleryUploadMockup" type="file" accept="image/*" multiple hidden class="gallery-item-upload" />
             </div>
           </article>
         </div>
@@ -116,7 +132,11 @@
             <div class="project-info">
               <span class="project-category">Bookmark</span>
               <h3>Thiết kế Bookmark</h3>
-              <button class="project-button">Xem chi tiết</button>
+              <div class="project-actions">
+                <button class="project-button">Xem chi tiết</button>
+                <label for="projectUploadBookmark" class="project-upload-icon" title="Thêm ảnh">📤</label>
+                <input id="projectUploadBookmark" type="file" accept="image/*" multiple hidden class="project-item-upload" />
+              </div>
             </div>
           </article>
           <article class="project-card" data-project="in3d">
@@ -124,7 +144,11 @@
             <div class="project-info">
               <span class="project-category">3D</span>
               <h3>In 3D</h3>
-              <button class="project-button">Xem chi tiết</button>
+              <div class="project-actions">
+                <button class="project-button">Xem chi tiết</button>
+                <label for="projectUploadIn3D" class="project-upload-icon" title="Thêm ảnh">📤</label>
+                <input id="projectUploadIn3D" type="file" accept="image/*" multiple hidden class="project-item-upload" />
+              </div>
             </div>
           </article>
           <article class="project-card" data-project="game2d">
@@ -132,7 +156,11 @@
             <div class="project-info">
               <span class="project-category">Game</span>
               <h3>Game 2D</h3>
-              <button class="project-button">Xem chi tiết</button>
+              <div class="project-actions">
+                <button class="project-button">Xem chi tiết</button>
+                <label for="projectUploadGame2D" class="project-upload-icon" title="Thêm ảnh">📤</label>
+                <input id="projectUploadGame2D" type="file" accept="image/*" multiple hidden class="project-item-upload" />
+              </div>
             </div>
           </article>
         </div>

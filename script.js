@@ -6,10 +6,6 @@ const profileUpload = document.getElementById('profileUpload');
 const profilePhoto = document.getElementById('profilePhoto');
 const uploadGraphicButton = document.getElementById('uploadGraphicButton');
 
-const addGalleryImage = document.getElementById('addGalleryImage');
-const galleryUpload = document.getElementById('galleryUpload');
-const galleryGrid = document.getElementById('galleryGrid');
-
 const modalBackdrop = document.getElementById('modalBackdrop');
 const projectModal = document.getElementById('projectModal');
 const modalClose = document.getElementById('modalClose');
@@ -26,42 +22,52 @@ const nextSlide = document.getElementById('nextSlide');
 let currentImages = [];
 let currentIndex = 0;
 
+// Image storage management
+const imageStorage = {
+  getGalleryImages(id) {
+    const stored = localStorage.getItem(`gallery_${id}`);
+    return stored ? JSON.parse(stored) : [];
+  },
+  setGalleryImages(id, images) {
+    localStorage.setItem(`gallery_${id}`, JSON.stringify(images));
+  },
+  getProjectImages(projectKey) {
+    const stored = localStorage.getItem(`project_${projectKey}`);
+    return stored ? JSON.parse(stored) : [];
+  },
+  setProjectImages(projectKey, images) {
+    localStorage.setItem(`project_${projectKey}`, JSON.stringify(images));
+  }
+};
+
+const galleryMetadata = {
+  poster: { title: 'Poster Design', category: 'Poster Design', description: 'Minimal poster với gradient vàng ấm.' },
+  bookmark: { title: 'Bookmark Design', category: 'Bookmark Design', description: 'Bộ sưu tập bookmark phong cách 3D.' },
+  ui: { title: 'UI Design', category: 'UI Design', description: 'Thiết kế giao diện mềm mại, gợi cảm hứng.' },
+  mockup: { title: '3D Mockup', category: '3D Mockup', description: 'Hiệu ứng 3D nhẹ nhàng cho thiết kế sản phẩm.' }
+};
+
 const projectData = {
   bookmark: {
     title: 'Thiết kế Bookmark',
     category: 'Bookmark',
     description: 'Một dự án bookmark đầy sáng tạo, cân bằng giữa thẩm mỹ ấm áp và trải nghiệm người dùng tinh tế.',
     tools: 'Figma, Illustrator',
-    process: 'Research → Sketch → Mockup',
-    images: [
-      createSvgPlaceholder('Bookmark 1', '#f7b46b', '#c76b2d'),
-      createSvgPlaceholder('Bookmark 2', '#ffdbad', '#b35c25'),
-      createSvgPlaceholder('Bookmark 3', '#f0b67f', '#9f4e2f')
-    ]
+    process: 'Research → Sketch → Mockup'
   },
   in3d: {
     title: 'In 3D',
     category: '3D',
     description: 'Concept 3D với mockup chuyên nghiệp, ánh sáng mềm và bố cục hiện đại.',
     tools: 'Photoshop, 3D mockup',
-    process: 'Concept → Render → Presentation',
-    images: [
-      createSvgPlaceholder('3D Mockup 1', '#e8c5a0', '#7d3f21'),
-      createSvgPlaceholder('3D Mockup 2', '#feeac7', '#8b4b24'),
-      createSvgPlaceholder('3D Mockup 3', '#f3d7b0', '#aa6f3b')
-    ]
+    process: 'Concept → Render → Presentation'
   },
   game2d: {
     title: 'Game 2D',
     category: 'Game',
     description: 'Thiết kế game 2D nhấn mạnh trải nghiệm, cách điệu hình ảnh và cảm giác chơi thú vị.',
     tools: 'Figma, Premiere Pro',
-    process: 'Concept → Prototype → Polish',
-    images: [
-      createSvgPlaceholder('Game 1', '#f7c67c', '#9f532d'),
-      createSvgPlaceholder('Game 2', '#ffd8a5', '#7b3d24'),
-      createSvgPlaceholder('Game 3', '#f8d39d', '#8b4729')
-    ]
+    process: 'Concept → Prototype → Polish'
   }
 };
 
@@ -82,14 +88,16 @@ function initTheme() {
 }
 
 function openModal(data) {
-  currentImages = data.images;
+  currentImages = data.images || [];
   currentIndex = 0;
-  modalImage.src = currentImages[0];
+  if (currentImages.length > 0) {
+    modalImage.src = currentImages[0];
+  }
   modalTitle.textContent = data.title;
   modalCategory.textContent = data.category;
   modalDescription.textContent = data.description;
-  modalTools.textContent = data.tools;
-  modalProcess.textContent = data.process;
+  modalTools.textContent = data.tools || '';
+  modalProcess.textContent = data.process || '';
   renderThumbnails();
   modalBackdrop.classList.add('active');
   projectModal.classList.add('active');
@@ -103,6 +111,7 @@ function closeModal() {
 }
 
 function setSlide(index) {
+  if (currentImages.length === 0) return;
   currentIndex = ((index % currentImages.length) + currentImages.length) % currentImages.length;
   modalImage.src = currentImages[currentIndex];
 }
@@ -124,43 +133,63 @@ function renderThumbnails() {
 function openProjectModal(projectKey) {
   const project = projectData[projectKey];
   if (project) {
-    openModal(project);
+    const uploadedImages = imageStorage.getProjectImages(projectKey);
+    const images = uploadedImages.length > 0 ? uploadedImages : [
+      createSvgPlaceholder(project.title, '#f7b46b', '#c76b2d')
+    ];
+    openModal({
+      ...project,
+      images
+    });
   }
 }
 
 function openGalleryItem(card) {
-  const title = card.dataset.title || 'Design Work';
-  const category = card.dataset.category || 'Design';
-  const description = card.dataset.description || 'Thiết kế sáng tạo được trình bày dưới dạng gallery.';
-  const img = card.querySelector('img');
-  const imageSrc = img ? img.src : createSvgPlaceholder(title, '#f3d0a4', '#b96a31');
+  const galleryId = card.dataset.galleryId;
+  const metadata = galleryId ? galleryMetadata[galleryId] : null;
+  const title = metadata?.title || 'Design Work';
+  const category = metadata?.category || 'Design';
+  const description = metadata?.description || 'Thiết kế sáng tạo được trình bày dưới dạng gallery.';
+  
+  let images = [];
+  if (galleryId) {
+    images = imageStorage.getGalleryImages(galleryId);
+  }
+  if (images.length === 0) {
+    const img = card.querySelector('img');
+    images = [img ? img.src : createSvgPlaceholder(title, '#f3d0a4', '#b96a31')];
+  }
+  
   openModal({
     title,
     category,
     description,
     tools: 'Graphic Design',
     process: 'Upload → edit → polish',
-    images: [imageSrc]
+    images
   });
 }
 
-function createGalleryCard(file) {
-  const url = URL.createObjectURL(file);
-  const card = document.createElement('article');
-  card.className = 'gallery-card';
-  card.dataset.title = file.name;
-  card.dataset.category = 'Uploaded';
-  card.dataset.description = 'Ảnh thiết kế mới tải lên.';
-  card.innerHTML = `
-    <img src="${url}" alt="${file.name}" />
-    <div class="gallery-overlay">
-      <span class="gallery-category">Uploaded</span>
-      <h3>${file.name}</h3>
-      <p>Thiết kế mới vừa thêm.</p>
-    </div>
-  `;
-  card.addEventListener('click', () => openGalleryItem(card));
-  return card;
+function updateGalleryCard(galleryId) {
+  const card = document.querySelector(`[data-gallery-id="${galleryId}"]`);
+  if (!card) return;
+  
+  const images = imageStorage.getGalleryImages(galleryId);
+  if (images.length > 0) {
+    const img = card.querySelector('img');
+    img.src = images[0];
+  }
+}
+
+function updateProjectThumbnail(projectKey) {
+  const card = document.querySelector(`[data-project="${projectKey}"]`);
+  if (!card) return;
+  
+  const images = imageStorage.getProjectImages(projectKey);
+  if (images.length > 0) {
+    const thumb = card.querySelector('.project-thumb');
+    thumb.style.backgroundImage = `url('${images[0]}')`;
+  }
 }
 
 function attachGalleryListeners() {
@@ -169,12 +198,64 @@ function attachGalleryListeners() {
   });
 }
 
-function attachProjectListeners() {
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => openProjectModal(card.dataset.project));
+function attachGalleryItemUploadListeners() {
+  document.querySelectorAll('.gallery-item-upload').forEach(input => {
+    input.addEventListener('change', event => {
+      // Parse gallery ID: galleryUploadPoster -> poster
+      let galleryId = event.target.id.replace('galleryUpload', '').toLowerCase();
+      const files = Array.from(event.target.files);
+      if (files.length > 0) {
+        // Store as blob URL
+        const newImages = files.map(file => URL.createObjectURL(file));
+        const previousImages = imageStorage.getGalleryImages(galleryId);
+        const allImages = [...previousImages, ...newImages];
+        imageStorage.setGalleryImages(galleryId, allImages);
+        updateGalleryCard(galleryId);
+      }
+      event.target.value = '';
+    });
   });
 }
 
+function attachProjectListeners() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    const button = card.querySelector('.project-button');
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      openProjectModal(card.dataset.project);
+    });
+  });
+}
+
+function attachProjectItemUploadListeners() {
+  document.querySelectorAll('.project-item-upload').forEach(input => {
+    input.addEventListener('change', event => {
+      const id = event.target.id;
+      let projectKey = 'bookmark';
+      
+      // Parse project key: projectUploadBookmark -> bookmark, projectUploadIn3D -> in3d, projectUploadGame2D -> game2d
+      if (id.includes('Bookmark')) {
+        projectKey = 'bookmark';
+      } else if (id.includes('In3D')) {
+        projectKey = 'in3d';
+      } else if (id.includes('Game2D')) {
+        projectKey = 'game2d';
+      }
+      
+      const files = Array.from(event.target.files);
+      if (files.length > 0) {
+        const newImages = files.map(file => URL.createObjectURL(file));
+        const previousImages = imageStorage.getProjectImages(projectKey);
+        const allImages = [...previousImages, ...newImages];
+        imageStorage.setProjectImages(projectKey, allImages);
+        updateProjectThumbnail(projectKey);
+      }
+      event.target.value = '';
+    });
+  });
+}
+
+// Event listeners
 themeToggle.addEventListener('change', () => {
   setTheme(themeToggle.checked ? 'dark' : 'light');
 });
@@ -186,16 +267,8 @@ profileUpload.addEventListener('change', event => {
   }
 });
 
-uploadGraphicButton.addEventListener('click', () => galleryUpload.click());
-addGalleryImage.addEventListener('click', () => galleryUpload.click());
-
-galleryUpload.addEventListener('change', event => {
-  const files = Array.from(event.target.files);
-  files.forEach(file => {
-    const card = createGalleryCard(file);
-    galleryGrid.appendChild(card);
-  });
-  galleryUpload.value = '';
+uploadGraphicButton.addEventListener('click', () => {
+  document.getElementById('addGalleryImage').click();
 });
 
 prevSlide.addEventListener('click', () => setSlide(currentIndex - 1));
@@ -209,6 +282,10 @@ document.addEventListener('keydown', event => {
   }
 });
 
+// Initialization
 initTheme();
 attachGalleryListeners();
+attachGalleryItemUploadListeners();
 attachProjectListeners();
+attachProjectItemUploadListeners();
+
