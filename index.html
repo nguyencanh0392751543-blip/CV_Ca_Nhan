@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyễn Minh Cảnh | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Toggle dark mode" />
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">Portfolio</div>
+      <label class="theme-toggle" for="theme-toggle" aria-label="Chuyển đổi giao diện">
+        <span class="toggle-icon">☾</span>
+      </label>
+    </header>
+
+    <main class="page-content">
+      <section class="hero section hero-section">
+        <p class="eyebrow">Xin chào, tôi là</p>
+        <h1>Nguyễn Minh Cảnh</h1>
+        <p class="hero-subtitle">“Thiết kế trải nghiệm đơn giản, hiệu quả và có cảm xúc”</p>
+        <p class="hero-role">Sinh viên ngành CNNT - Đồ Họa Kỹ Thuật Số</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Xem dự án</a>
+          <a class="button button-secondary" href="#contact">Hire Me</a>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <div class="section-heading">
+          <span class="section-label">Về tôi</span>
+          <h2>Giới thiệu ngắn gọn</h2>
+        </div>
+        <p>Là một sinh viên tại trường GDU, hiện đang học năm 2 của ngành CNNT - Đồ Họa Kỹ Thuật Số. Tôi đang tập trung vào một dự án thiết kế UI/UX và game.</p>
+      </section>
+
+      <section class="section skills-section">
+        <div class="section-heading">
+          <span class="section-label">Kỹ năng</span>
+          <h2>Thiết kế và ý tưởng</h2>
+        </div>
+        <div class="skill-groups">
+          <div class="skill-group">
+            <h3>Design</h3>
+            <div class="skill-tags">
+              <span>Figma</span>
+              <span>Photoshop</span>
+              <span>Illustrator</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>Other</h3>
+            <div class="skill-tags">
+              <span>Sáng tạo ý tưởng game</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="section-heading">
+          <span class="section-label">Dự án của tôi</span>
+          <h2>Thiết kế Bookmark 3D</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-card__image image-1"></div>
+            <div class="project-card__body">
+              <span class="project-category">Design</span>
+              <h3>Thiết kế Bookmark 3D</h3>
+              <p>Trình bày ý tưởng bookmark 3D với màu sắc nhẹ nhàng và cấu trúc tối giản.</p>
+              <label class="button button-link" for="project-1-modal">Xem chi tiết</label>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image image-2"></div>
+            <div class="project-card__body">
+              <span class="project-category">3D</span>
+              <h3>Thiết kế Bookmark 3D</h3>
+              <p>Một bộ sưu tập hình khối 3D với hiệu ứng ánh sáng tinh tế cho trải nghiệm thao tác.</p>
+              <label class="button button-link" for="project-2-modal">Xem chi tiết</label>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image image-3"></div>
+            <div class="project-card__body">
+              <span class="project-category">Design</span>
+              <h3>Thiết kế Bookmark 3D</h3>
+              <p>Thiết kế giao diện trang dự án với nhấn nhá màu tím xanh và bố cục nhẹ nhàng.</p>
+              <label class="button button-link" for="project-3-modal">Xem chi tiết</label>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section hobbies-section">
+        <div class="section-heading">
+          <span class="section-label">Sở thích</span>
+          <h2>Những điều tôi yêu thích</h2>
+        </div>
+        <div class="hobby-grid">
+          <div class="hobby-card">⚽ Đá banh</div>
+          <div class="hobby-card">🎬 Xem phim</div>
+          <div class="hobby-card">🎮 Chơi game</div>
+          <div class="hobby-card">🍳 Nấu ăn</div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="contact-card">
+          <div>
+            <span class="section-label">Liên hệ</span>
+            <h2>Ngại gì không kết nối?</h2>
+            <p>Nếu bạn muốn hợp tác hoặc cần hỗ trợ thiết kế, hãy liên hệ qua email bên dưới.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:nguyencanh0392751543@gmail.com">Hire Me</a>
+            <p class="contact-email">nguyencanh0392751543@gmail.com</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Project modals -->
+  <input type="checkbox" id="project-1-modal" class="modal-toggle" hidden>
+  <label class="modal-backdrop" for="project-1-modal"></label>
+  <section class="modal-panel modal-1">
+    <label class="modal-close" for="project-1-modal">×</label>
+    <h3>Thiết kế Bookmark 3D</h3>
+    <p>Phát triển dự án bookmark 3D với trải nghiệm trực quan, hình ảnh 3D nhẹ và màu sắc dịu mắt.</p>
+    <div class="modal-gallery">
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+    </div>
+    <div class="modal-meta">
+      <span>Công cụ: Figma, Illustrator</span>
+      <span>Thể loại: Design / 3D</span>
+    </div>
+  </section>
+
+  <input type="checkbox" id="project-2-modal" class="modal-toggle" hidden>
+  <label class="modal-backdrop" for="project-2-modal"></label>
+  <section class="modal-panel modal-2">
+    <label class="modal-close" for="project-2-modal">×</label>
+    <h3>Thiết kế Bookmark 3D</h3>
+    <p>Mô tả dự án 3D với phong cách trực quan, những khối màu và ánh sáng mềm, phù hợp với ứng dụng sáng tạo.</p>
+    <div class="modal-gallery">
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+    </div>
+    <div class="modal-meta">
+      <span>Công cụ: Photoshop, 3D model</span>
+      <span>Thể loại: 3D</span>
+    </div>
+  </section>
+
+  <input type="checkbox" id="project-3-modal" class="modal-toggle" hidden>
+  <label class="modal-backdrop" for="project-3-modal"></label>
+  <section class="modal-panel modal-3">
+    <label class="modal-close" for="project-3-modal">×</label>
+    <h3>Thiết kế Bookmark 3D</h3>
+    <p>Bố cục trình bày sản phẩm thiết kế với thông tin rõ ràng, nhiều góc nhìn để nhấn mạnh tính thẩm mỹ và chức năng.</p>
+    <div class="modal-gallery">
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+      <div class="modal-image"></div>
+    </div>
+    <div class="modal-meta">
+      <span>Công cụ: Figma, Photoshop</span>
+      <span>Thể loại: Design</span>
+    </div>
+  </section>
+</body>
+</html>
