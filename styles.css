@@ -2,6 +2,7 @@
   --bg: #fff7ed;
   --surface: #fff2e6;
   --surface-strong: #fff7f0;
+  --surface-soft: rgba(255, 255, 255, 0.85);
   --card: #5f3c1e;
   --text: #22130f;
   --muted: #6f5845;
@@ -15,10 +16,11 @@
   --bg: #1e1b17;
   --surface: #25211d;
   --surface-strong: #2c2924;
+  --surface-soft: rgba(255, 255, 255, 0.08);
   --card: #3d3228;
   --text: #f8efe2;
-  --muted: #b1a18d;
-  --border: rgba(255, 255, 255, 0.08);
+  --muted: #d4c4a9;
+  --border: rgba(255, 255, 255, 0.12);
   --accent: #ffb85c;
   --accent-soft: rgba(255, 184, 92, 0.16);
   --shadow: 0 26px 52px rgba(0, 0, 0, 0.35);
@@ -36,10 +38,14 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Alberto', sans-serif;
+  font-weight: 400;
   background: var(--bg);
   color: var(--text);
   transition: background 0.4s ease, color 0.4s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -90,12 +96,19 @@ label {
   color: var(--accent);
   font-weight: 700;
   font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section-header h2 {
   margin: 0;
   font-size: clamp(1.7rem, 2vw, 2.4rem);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  transition: transform 0.35s ease, color 0.35s ease;
+}
+
+.section-header:hover h2 {
+  transform: translateY(-4px);
 }
 
 /* Header */
@@ -128,7 +141,7 @@ label {
 .topbar-logo {
   color: var(--text);
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -138,32 +151,20 @@ label {
   align-items: center;
   padding: 0.55rem 0.95rem;
   border-radius: 999px;
-  background: rgba(34, 19, 15, 0.08);
+  background: rgba(255, 255, 255, 0.14);
   color: var(--text);
   font-size: 0.9rem;
   font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.theme-switch {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--surface-strong);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: transform 0.25s ease, background 0.3s ease;
+.topbar-pill:hover,
+.year-badge:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
 }
 
-.theme-switch:hover {
-  transform: scale(1.06);
-}
-
-.theme-icon {
-  font-size: 1.2rem;
-}
-
+.theme-switch,
 .data-toggle-btn {
   width: 46px;
   height: 46px;
@@ -173,15 +174,20 @@ label {
   background: var(--surface-strong);
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: transform 0.25s ease, background 0.3s ease;
+  transition: transform 0.25s ease, background 0.3s ease, border-color 0.3s ease;
   font-size: 1.2rem;
-  margin-right: 0.5rem;
 }
 
+.theme-switch:hover,
 .data-toggle-btn:hover {
   transform: scale(1.06);
   background: var(--accent);
   color: white;
+  border-color: transparent;
+}
+
+.theme-icon {
+  font-size: 1.2rem;
 }
 
 /* Hero */
@@ -202,11 +208,12 @@ label {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .hero-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
 }
 
 .hero-image-card {
@@ -281,6 +288,7 @@ label {
   margin: 0;
   font-size: clamp(3rem, 4vw, 4.6rem);
   line-height: 0.95;
+  letter-spacing: -0.03em;
 }
 
 .email-badge,
@@ -326,23 +334,28 @@ label {
   border: none;
   cursor: pointer;
   font-weight: 700;
-  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .button-primary {
   background: linear-gradient(135deg, var(--accent), #ffb14f);
   color: white;
-  box-shadow: 0 16px 30px rgba(244, 140, 53, 0.2);
+  box-shadow: 0 18px 34px rgba(244, 140, 53, 0.24);
 }
 
 .button-secondary {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+  background: rgba(244, 140, 53, 0.08);
+  border-color: rgba(244, 140, 53, 0.24);
 }
 
 /* Projects */
@@ -362,13 +375,20 @@ label {
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
 }
 
 .project-thumb {
   min-height: 240px;
   background-size: cover;
   background-position: center;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.project-card:hover .project-thumb {
+  transform: scale(1.03);
+  filter: brightness(1.02);
 }
 
 .project-thumb-1 {
