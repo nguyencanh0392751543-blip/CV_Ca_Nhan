@@ -4,7 +4,6 @@ const themeIcon = document.querySelector('.theme-icon');
 
 const profileUpload = document.getElementById('profileUpload');
 const profilePhoto = document.getElementById('profilePhoto');
-const uploadGraphicButton = document.getElementById('uploadGraphicButton');
 
 const modalBackdrop = document.getElementById('modalBackdrop');
 const projectModal = document.getElementById('projectModal');
@@ -224,10 +223,6 @@ profileUpload.addEventListener('change', event => {
   }
 });
 
-uploadGraphicButton.addEventListener('click', () => {
-  document.getElementById('addGalleryImage').click();
-});
-
 prevSlide.addEventListener('click', () => setSlide(currentIndex - 1));
 nextSlide.addEventListener('click', () => setSlide(currentIndex + 1));
 modalClose.addEventListener('click', closeModal);
@@ -243,6 +238,21 @@ document.addEventListener('keydown', event => {
 initTheme();
 attachProjectListeners();
 attachProjectItemUploadListeners();
+
+const revealTargets = document.querySelectorAll('.section, .hero-card, .project-card, .skill-card, .hobby-card, .contact-card');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.16 });
+
+revealTargets.forEach(el => {
+  el.classList.add('reveal');
+  revealObserver.observe(el);
+});
 
 // Export/Import functionality
 const exportDataBtn = document.getElementById('exportDataBtn');

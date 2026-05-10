@@ -1,5 +1,5 @@
 # CV_Ca_Nhan - Portfolio Website
-
+# B1: Em kêu chatgpt viết ra một bộ prompt như này: bạn là một chuyên gia về UI/UX, hãy tạo cho tôi một portfolio đơn giản bao gồm Html + csss. Giao diện white, có nút thay đổi theme ở đầu trang. Thông tin cá nhân: Nguyễn Minh Cảnh. Tagline: “Thiết kế trải nghiệm đơn giản, hiệu quả và có cảm xúc”. Một chút về tôi: Là một sinh viên tại trường GDU, hiện đang học năm 2 của nghành CNNT - Đồ Họa Kỹ Thuật Số. Tôi đang tập trung vào một dự án thiết kế UI/UX và game. Kỹ năng tích lũy: Design (Figma, Photoshop, AI), Khác: Sáng tạo ý tưởng game. Dự án: Thiết kế Bookmark, in 3D, tại phần này tôi muốn bạn tạo ra album ảnh để trưng bày sản phẩm hay dự án. Sở thích của tôi là đá banh và đi xem phim, chơi game, nấu ăn. Liên hệ tôi: email (nguyencanh0392751543), thêm nút "Hire me". Hãy tạo cho tôi một bộ prompt để argent có thể thiết kế ra website như vậy.
 🎨 **Modern Creative Portfolio** cho Nguyễn Minh Cảnh - UI/UX Designer
 
 ## ✨ Tính năng
@@ -157,7 +157,8 @@ Each project card includes:
 * HTML + CSS only
 * No frameworks
 * Clean, well-structured code
-# B2: Sau khi chạy thử bộ prompt trên em thấy vẫn chưa ưng ý, nên kêu chatgpt sửa lại prompt theo bố cục của cv mẫu và được bộ prompt này: Create a modern portfolio website inspired by the attached creative CV layout design.
+# B2: Sau khi chạy thử bộ prompt trên em thấy vẫn chưa ưng ý, nên kêu chatgpt sửa lại prompt theo bố cục của cv mẫu và được bộ prompt này: bạn có thể dựa vào bố cục như CV mẫu này mà viết cho tôi một prompt với những thông tin cá nhân của tôi như sau: Nguyễn Minh Cảnh, giới thiệu về tôi: Là một sinh viên tại trường GDU, hiện đang học năm 2 của nghành CNNT - Đồ Họa Kỹ Thuật Số. Tôi đang tập trung vào một dự án thiết kế UI/UX và game. Skill: Premiere, Figma, AI, Photoshop, sáng tạo nội dung. Dự án: Thiết kế Bookmark, in 3D, game 2D. Sở thích của tôi là đá banh và đi xem phim, chơi game, nấu ăn. email (nguyencanh0392751543@gmail.com). Hãy tạo cho tôi một bộ prompt để argent có thể thiết kế ra website như vậy.
+# Create a modern portfolio website inspired by the attached creative CV layout design.
 
 🎨 OVERALL STYLE:
 
@@ -367,7 +368,7 @@ Requirements:
 
 Do NOT create a generic portfolio website.
 Make it feel like a modern creative UI/UX student portfolio inspired by Behance and designer resume posters.
-# B3: sau đó em kêu chatgpt viết một bộ prompt bổ sung tính năng thêm hình ảnh vào các mục như Graphic Designer, Project (bookmark, in 3D, game 2D) Create a modern creative portfolio website inspired by stylish designer resume posters and Behance portfolios.
+# B3: sau đó em kêu chatgpt viết một bộ prompt bổ sung: viết cho tôi một bộ prompt dựa theo các yêu cầu vừa nãy và có chức năng thêm hình ảnh vào các mục như Graphic Designer, Project (bookmark, in 3D, game 2D). Create a modern creative portfolio website inspired by stylish designer resume posters and Behance portfolios.
 
 ⚠️ IMPORTANT:
 Use the attached CV layout only as inspiration for structure and visual hierarchy.

@@ -42,10 +42,22 @@ body {
   font-weight: 400;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.4s ease, color 0.4s ease;
+  transition: background 0.45s ease, color 0.45s ease;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Alberto', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+p, li {
+  line-height: 1.75;
+  color: var(--muted);
 }
 
 img {
@@ -145,6 +157,42 @@ label {
   text-transform: uppercase;
 }
 
+.topbar-nav {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.92rem;
+  transition: color 0.28s ease, transform 0.28s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.28s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
 .topbar-pill,
 .year-badge {
   display: inline-flex;
@@ -193,6 +241,18 @@ label {
 /* Hero */
 .hero-section {
   padding-top: 1rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-grid {
@@ -602,9 +662,10 @@ label {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(34, 19, 15, 0.7);
+  background: rgba(10, 10, 10, 0.72);
   z-index: 90;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s ease;
+  backdrop-filter: blur(8px);
 }
 
 .modal-panel {
@@ -615,12 +676,12 @@ label {
   max-height: 92vh;
   overflow-y: auto;
   border-radius: 32px;
-  transform: translate(-50%, -50%) scale(0.96);
-  background: var(--surface-strong);
+  transform: translate(-50%, -50%) scale(0.94);
+  background: rgba(255, 247, 237, 0.98);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   z-index: 95;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
 }
 
 .modal-backdrop.active,
@@ -628,6 +689,7 @@ label {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-body {
