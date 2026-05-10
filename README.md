@@ -1,13 +1,69 @@
-# CV_Ca_Nhan
-# B1: Em kêu chatgpt tạo ra một bộ prompt như sau: Create a clean and modern personal portfolio website using HTML and CSS only.
+# CV_Ca_Nhan - Portfolio Website
 
-🎨 DESIGN STYLE:
+🎨 **Modern Creative Portfolio** cho Nguyễn Minh Cảnh - UI/UX Designer
 
-* Minimalist, professional UI/UX
-* Default white theme
-* Include a dark mode toggle button in the top-right corner
-* Smooth transition between light and dark mode
-* Centered layout with max-width ~900px
+## ✨ Tính năng
+
+- **Responsive Design**: Hoạt động tốt trên mọi thiết bị
+- **Dark/Light Mode**: Chuyển đổi theme với animation mượt mà
+- **Interactive Gallery**: Hover effects và modal chi tiết
+- **Project Showcase**: Slider với thumbnails
+- **Persistent Images**: Ảnh upload được lưu và không mất khi reload
+- **Data Export/Import**: Chia sẻ portfolio qua file JSON
+
+## 🚀 Cách sử dụng
+
+### 1. Upload ảnh cho từng mục
+- **Gallery**: Click vào icon 📤 trên mỗi card để thêm ảnh
+- **Projects**: Click 📤 bên cạnh "Xem chi tiết" để upload ảnh project
+
+### 2. Lưu trữ ảnh (Persistent)
+- Ảnh được lưu dưới dạng base64 trong localStorage
+- **Không mất** khi reload trang hoặc đóng browser
+
+### 3. Chia sẻ Portfolio
+- Click button 💾 ở header để mở menu xuất/nhập
+- **Xuất dữ liệu**: Download file `portfolio-data.json`
+- **Nhập dữ liệu**: Upload file JSON từ người khác để import
+
+## 🌐 Deploy lên GitHub Pages
+
+Portfolio đã được setup tự động deploy lên GitHub Pages:
+
+1. Vào repo GitHub → **Settings** → **Pages**
+2. Chọn **Source**: "GitHub Actions"
+3. URL sẽ là: `https://nguyencanh0392751543-blip.github.io/CV_Ca_Nhan/`
+
+## 📁 Cấu trúc file
+
+```
+CV_Ca_Nhan/
+├── index.html          # HTML structure
+├── styles.css          # CSS styling + themes
+├── script.js           # JavaScript interactions
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # GitHub Actions deployment
+└── README.md           # Documentation
+```
+
+## 🎯 Thông tin cá nhân
+
+- **Tên**: Nguyễn Minh Cảnh
+- **Nghề nghiệp**: UI/UX Designer Student / Digital Graphics
+- **Tagline**: "Thiết kế trải nghiệm đơn giản, hiệu quả và có cảm xúc"
+
+## 🛠️ Tech Stack
+
+- **HTML5**: Semantic markup
+- **CSS3**: Custom properties, Grid, Flexbox
+- **Vanilla JavaScript**: No frameworks
+- **localStorage**: Data persistence
+- **File API**: Image upload handling
+
+---
+
+*Portfolio được tạo với sự hỗ trợ của GitHub Copilot*
 * Use soft accent color (blue or purple)
 * Good spacing, clean typography
 
