@@ -1,30 +1,38 @@
 :root {
-  --bg: #fff7ed;
-  --surface: #fff2e6;
-  --surface-strong: #fff7f0;
-  --surface-soft: rgba(255, 255, 255, 0.85);
-  --card: #5f3c1e;
-  --text: #22130f;
-  --muted: #6f5845;
-  --border: rgba(34, 19, 15, 0.08);
-  --accent: #f48c35;
-  --accent-soft: rgba(244, 140, 53, 0.16);
-  --shadow: 0 26px 52px rgba(34, 19, 15, 0.09);
+  --bg: #f7ead7;
+  --surface: #efe1c6;
+  --surface-strong: #f5e6d1;
+  --surface-soft: rgba(245, 226, 205, 0.88);
+  --card: #d1ae7e;
+  --text: #3f4652;
+  --muted: #7a6958;
+  --border: rgba(104, 86, 66, 0.16);
+  --accent: #d9a34b;
+  --accent-soft: rgba(217, 163, 75, 0.18);
+  --accent-strong: #b37b26;
+  --brand-blue: #7fa8c5;
+  --brand-blue-soft: rgba(126, 157, 184, 0.18);
+  --deep-blue: #3f566c;
+  --shadow: 0 28px 60px rgba(79, 60, 28, 0.12);
 }
 
 .theme-toggle-input:checked ~ .page-shell {
-  --bg: #1e1b17;
-  --surface: #25211d;
-  --surface-strong: #2c2924;
-  --surface-soft: rgba(255, 255, 255, 0.08);
-  --card: #3d3228;
-  --text: #f8efe2;
-  --muted: #d4c4a9;
-  --border: rgba(255, 255, 255, 0.12);
-  --accent: #ffb85c;
-  --accent-soft: rgba(255, 184, 92, 0.16);
-  --shadow: 0 26px 52px rgba(0, 0, 0, 0.35);
-}
+  --bg: #1f2737;
+  --surface: #2b3346;
+  --surface-strong: #343d52;
+  --surface-soft: rgba(255, 239, 208, 0.08);
+  --card: #3d475e;
+  --text: #f4e7d4;
+  --muted: #cbbaa3;
+  --border: rgba(239, 225, 203, 0.14);
+  --accent: #d9a34b;
+  --accent-soft: rgba(217, 163, 75, 0.18);
+  --accent-strong: #f1c05d;
+  --brand-blue: #6c8dad;
+  --brand-blue-soft: rgba(126, 157, 184, 0.16);
+  --deep-blue: #60718d;
+  --shadow: 0 28px 60px rgba(0, 0, 0, 0.32);
+} 
 
 /* Base styles */
 * {
@@ -78,11 +86,39 @@ label {
 
 /* Layout */
 .page-shell {
+  position: relative;
   min-height: 100vh;
   background: var(--bg);
+  overflow: hidden;
+}
+
+.page-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 14% 12%, rgba(217, 163, 75, 0.22), transparent 20%),
+              radial-gradient(circle at 88% 15%, rgba(126, 157, 184, 0.16), transparent 18%),
+              radial-gradient(circle at 40% 88%, rgba(245, 226, 205, 0.45), transparent 32%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-shell::after {
+  content: '';
+  position: absolute;
+  width: 48vw;
+  height: 40vw;
+  left: -10vw;
+  top: 50vh;
+  background: radial-gradient(circle, rgba(239, 226, 210, 0.54), transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   max-width: 960px;
   margin: 0 auto;
   padding: 1.5rem 1.5rem 3rem;
@@ -104,8 +140,8 @@ label {
   gap: 0.6rem;
   padding: 0.45rem 0.85rem;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--brand-blue-soft);
+  color: var(--brand-blue);
   font-weight: 700;
   font-size: 0.92rem;
   letter-spacing: 0.08em;
@@ -133,13 +169,13 @@ label {
   align-items: center;
   padding: 1rem 1.5rem;
   gap: 1rem;
-  background: rgba(255, 247, 237, 0.9);
+  background: rgba(239, 226, 210, 0.92);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(18px);
 }
 
 .theme-toggle-input:checked ~ .page-shell .topbar {
-  background: rgba(30, 27, 23, 0.88);
+  background: rgba(37, 48, 63, 0.92);
 }
 
 .topbar-left,
@@ -289,7 +325,7 @@ label {
   border-radius: 32px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(180deg, #f8d7a5 0%, #d98d3c 100%);
+  background: linear-gradient(180deg, rgba(217, 163, 75, 0.3) 0%, rgba(126, 157, 184, 0.18) 100%);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
@@ -402,9 +438,14 @@ label {
 }
 
 .button-primary {
-  background: linear-gradient(135deg, var(--accent), #ffb14f);
-  color: white;
-  box-shadow: 0 18px 34px rgba(244, 140, 53, 0.24);
+  background: var(--accent);
+  color: var(--text);
+  box-shadow: 0 18px 34px rgba(217, 163, 75, 0.24);
+}
+
+.button-primary:hover {
+  background: var(--deep-blue);
+  color: var(--surface);
 }
 
 .button-secondary {
@@ -414,8 +455,9 @@ label {
 }
 
 .button-secondary:hover {
-  background: rgba(244, 140, 53, 0.08);
-  border-color: rgba(244, 140, 53, 0.24);
+  background: var(--brand-blue-soft);
+  color: var(--deep-blue);
+  border-color: var(--brand-blue);
 }
 
 /* Projects */
@@ -428,10 +470,10 @@ label {
 .project-card {
   border-radius: 28px;
   overflow: hidden;
-  background: var(--surface-strong);
+  background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .project-card:hover {
@@ -443,7 +485,13 @@ label {
   min-height: 240px;
   background-size: cover;
   background-position: center;
-  transition: transform 0.45s ease, filter 0.45s ease;
+  transition: transform 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
+}
+
+.project-card:hover .project-thumb {
+  transform: scale(1.03);
+  filter: brightness(1.02);
+  box-shadow: inset 0 0 0 1px rgba(126, 157, 184, 0.18);
 }
 
 .project-card:hover .project-thumb {
@@ -642,7 +690,7 @@ label {
   gap: 1.5rem;
   padding: 2rem;
   border-radius: 32px;
-  background: var(--surface-strong);
+  background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }

@@ -609,4 +609,4 @@ Requirements:
 ⚠️ IMPORTANT:
 Do NOT create a generic portfolio website.
 Make it feel like a modern creative UI/UX student portfolio with interactive image galleries and project showcase sections.
-# B4:
+# B4: em cho chatgpt viết thêm một bộ prompt để bổ sung 
