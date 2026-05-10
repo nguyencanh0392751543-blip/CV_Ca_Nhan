@@ -446,18 +446,24 @@ label {
 }
 
 .project-thumb-1 {
-  background: linear-gradient(180deg, #f9b56d 0%, #c5672b 100%);
+  background-image: url('../images/projects/Design.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-color: #f9b56d;
 }
 
 .project-thumb-2 {
-  background-image: url('../images/projects/in3d-printer.jpg');
+  background-image: url('../images/projects/Design.jpeg');
   background-size: cover;
   background-position: center;
   background-color: #c17b3f;
 }
 
 .project-thumb-3 {
-  background: linear-gradient(180deg, #e9b86d 0%, #a15f2d 100%);
+  background-image: url('../images/projects/Design.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-color: #e9b86d;
 }
 
 .project-info {
