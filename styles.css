@@ -118,8 +118,7 @@ label {
 }
 
 .topbar-left,
-.topbar-right,
-.gallery-actions {
+.topbar-right {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
@@ -346,79 +345,6 @@ label {
   border: 1px solid var(--border);
 }
 
-/* Gallery Section */
-.gallery-header {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.gallery-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.gallery-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  background: var(--surface-strong);
-}
-
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.gallery-card:hover img {
-  transform: scale(1.05);
-}
-
-.gallery-overlay {
-  position: absolute;
-  inset: 0;
-  padding: 1.5rem;
-  display: grid;
-  gap: 0.6rem;
-  align-content: end;
-  background: linear-gradient(180deg, transparent 40%, rgba(34, 19, 15, 0.6));
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.gallery-card:hover .gallery-overlay {
-  opacity: 1;
-}
-
-.gallery-category {
-  display: inline-flex;
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  font-size: 0.85rem;
-  color: white;
-}
-
-.gallery-overlay h3,
-.gallery-overlay p {
-  margin: 0;
-}
-
-.gallery-overlay h3 {
-  font-size: 1.35rem;
-}
-
-.gallery-overlay p {
-  color: rgba(255, 255, 255, 0.9);
-}
-
 /* Projects */
 .project-grid {
   display: grid;
@@ -499,39 +425,6 @@ label {
 
 .project-button:hover {
   transform: translateY(-1px);
-}
-
-/* Gallery upload buttons */
-.gallery-upload-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gallery-upload-btn .upload-icon {
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.gallery-card:hover .gallery-upload-btn .upload-icon {
-  background: white;
-  transform: scale(1.05);
-}
-
-.gallery-upload-btn .upload-icon:active {
-  transform: scale(0.95);
 }
 
 /* Project actions */

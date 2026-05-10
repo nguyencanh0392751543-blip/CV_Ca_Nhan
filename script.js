@@ -24,13 +24,6 @@ let currentIndex = 0;
 
 // Image storage management with base64 persistence
 const imageStorage = {
-  getGalleryImages(id) {
-    const stored = localStorage.getItem(`gallery_${id}`);
-    return stored ? JSON.parse(stored) : [];
-  },
-  setGalleryImages(id, images) {
-    localStorage.setItem(`gallery_${id}`, JSON.stringify(images));
-  },
   getProjectImages(projectKey) {
     const stored = localStorage.getItem(`project_${projectKey}`);
     return stored ? JSON.parse(stored) : [];
@@ -41,11 +34,6 @@ const imageStorage = {
   // Export all images for sharing
   exportData() {
     const data = {};
-    // Export gallery images
-    ['poster', 'bookmark', 'ui', 'mockup'].forEach(id => {
-      const images = this.getGalleryImages(id);
-      if (images.length > 0) data[`gallery_${id}`] = images;
-    });
     // Export project images
     ['bookmark', 'in3d', 'game2d'].forEach(key => {
       const images = this.getProjectImages(key);
@@ -66,13 +54,6 @@ const imageStorage = {
       alert('Dữ liệu không hợp lệ');
     }
   }
-};
-
-const galleryMetadata = {
-  poster: { title: 'Poster Design', category: 'Poster Design', description: 'Minimal poster với gradient vàng ấm.' },
-  bookmark: { title: 'Bookmark Design', category: 'Bookmark Design', description: 'Bộ sưu tập bookmark phong cách 3D.' },
-  ui: { title: 'UI Design', category: 'UI Design', description: 'Thiết kế giao diện mềm mại, gợi cảm hứng.' },
-  mockup: { title: '3D Mockup', category: '3D Mockup', description: 'Hiệu ứng 3D nhẹ nhàng cho thiết kế sản phẩm.' }
 };
 
 const projectData = {
@@ -172,43 +153,6 @@ function openProjectModal(projectKey) {
   }
 }
 
-function openGalleryItem(card) {
-  const galleryId = card.dataset.galleryId;
-  const metadata = galleryId ? galleryMetadata[galleryId] : null;
-  const title = metadata?.title || 'Design Work';
-  const category = metadata?.category || 'Design';
-  const description = metadata?.description || 'Thiết kế sáng tạo được trình bày dưới dạng gallery.';
-  
-  let images = [];
-  if (galleryId) {
-    images = imageStorage.getGalleryImages(galleryId);
-  }
-  if (images.length === 0) {
-    const img = card.querySelector('img');
-    images = [img ? img.src : createSvgPlaceholder(title, '#f3d0a4', '#b96a31')];
-  }
-  
-  openModal({
-    title,
-    category,
-    description,
-    tools: 'Graphic Design',
-    process: 'Upload → edit → polish',
-    images
-  });
-}
-
-function updateGalleryCard(galleryId) {
-  const card = document.querySelector(`[data-gallery-id="${galleryId}"]`);
-  if (!card) return;
-  
-  const images = imageStorage.getGalleryImages(galleryId);
-  if (images.length > 0) {
-    const img = card.querySelector('img');
-    img.src = images[0];
-  }
-}
-
 function updateProjectThumbnail(projectKey) {
   const card = document.querySelector(`[data-project="${projectKey}"]`);
   if (!card) return;
@@ -218,41 +162,6 @@ function updateProjectThumbnail(projectKey) {
     const thumb = card.querySelector('.project-thumb');
     thumb.style.backgroundImage = `url('${images[0]}')`;
   }
-}
-
-function attachGalleryListeners() {
-  document.querySelectorAll('.gallery-card').forEach(card => {
-    card.addEventListener('click', () => openGalleryItem(card));
-  });
-}
-
-function attachGalleryItemUploadListeners() {
-  document.querySelectorAll('.gallery-item-upload').forEach(input => {
-    input.addEventListener('change', event => {
-      // Parse gallery ID: galleryUploadPoster -> poster
-      let galleryId = event.target.id.replace('galleryUpload', '').toLowerCase();
-      const files = Array.from(event.target.files);
-      
-      if (files.length > 0) {
-        // Convert files to base64 and store
-        const promises = files.map(file => {
-          return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.readAsDataURL(file);
-          });
-        });
-        
-        Promise.all(promises).then(base64Images => {
-          const previousImages = imageStorage.getGalleryImages(galleryId);
-          const allImages = [...previousImages, ...base64Images];
-          imageStorage.setGalleryImages(galleryId, allImages);
-          updateGalleryCard(galleryId);
-        });
-      }
-      event.target.value = '';
-    });
-  });
 }
 
 function attachProjectListeners() {
@@ -332,8 +241,6 @@ document.addEventListener('keydown', event => {
 
 // Initialization
 initTheme();
-attachGalleryListeners();
-attachGalleryItemUploadListeners();
 attachProjectListeners();
 attachProjectItemUploadListeners();
 
