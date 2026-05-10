@@ -1,5 +1,5 @@
 # CV_Ca_Nhan
-# B1: Em sửa chatgpt để tạo ra một bộ prompt như sau: Create a clean and modern personal portfolio website using HTML and CSS only.
+# B1: Em kêu chatgpt tạo ra một bộ prompt như sau: Create a clean and modern personal portfolio website using HTML and CSS only.
 
 🎨 DESIGN STYLE:
 
@@ -552,3 +552,4 @@ Requirements:
 ⚠️ IMPORTANT:
 Do NOT create a generic portfolio website.
 Make it feel like a modern creative UI/UX student portfolio with interactive image galleries and project showcase sections.
+# B4:

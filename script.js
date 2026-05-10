@@ -22,7 +22,7 @@ const nextSlide = document.getElementById('nextSlide');
 let currentImages = [];
 let currentIndex = 0;
 
-// Image storage management
+// Image storage management with base64 persistence
 const imageStorage = {
   getGalleryImages(id) {
     const stored = localStorage.getItem(`gallery_${id}`);
@@ -37,6 +37,34 @@ const imageStorage = {
   },
   setProjectImages(projectKey, images) {
     localStorage.setItem(`project_${projectKey}`, JSON.stringify(images));
+  },
+  // Export all images for sharing
+  exportData() {
+    const data = {};
+    // Export gallery images
+    ['poster', 'bookmark', 'ui', 'mockup'].forEach(id => {
+      const images = this.getGalleryImages(id);
+      if (images.length > 0) data[`gallery_${id}`] = images;
+    });
+    // Export project images
+    ['bookmark', 'in3d', 'game2d'].forEach(key => {
+      const images = this.getProjectImages(key);
+      if (images.length > 0) data[`project_${key}`] = images;
+    });
+    return JSON.stringify(data);
+  },
+  // Import shared data
+  importData(jsonData) {
+    try {
+      const data = JSON.parse(jsonData);
+      Object.keys(data).forEach(key => {
+        localStorage.setItem(key, JSON.stringify(data[key]));
+      });
+      // Reload page to apply changes
+      location.reload();
+    } catch (e) {
+      alert('Dữ liệu không hợp lệ');
+    }
   }
 };
 
@@ -204,13 +232,23 @@ function attachGalleryItemUploadListeners() {
       // Parse gallery ID: galleryUploadPoster -> poster
       let galleryId = event.target.id.replace('galleryUpload', '').toLowerCase();
       const files = Array.from(event.target.files);
+      
       if (files.length > 0) {
-        // Store as blob URL
-        const newImages = files.map(file => URL.createObjectURL(file));
-        const previousImages = imageStorage.getGalleryImages(galleryId);
-        const allImages = [...previousImages, ...newImages];
-        imageStorage.setGalleryImages(galleryId, allImages);
-        updateGalleryCard(galleryId);
+        // Convert files to base64 and store
+        const promises = files.map(file => {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+          });
+        });
+        
+        Promise.all(promises).then(base64Images => {
+          const previousImages = imageStorage.getGalleryImages(galleryId);
+          const allImages = [...previousImages, ...base64Images];
+          imageStorage.setGalleryImages(galleryId, allImages);
+          updateGalleryCard(galleryId);
+        });
       }
       event.target.value = '';
     });
@@ -244,11 +282,21 @@ function attachProjectItemUploadListeners() {
       
       const files = Array.from(event.target.files);
       if (files.length > 0) {
-        const newImages = files.map(file => URL.createObjectURL(file));
-        const previousImages = imageStorage.getProjectImages(projectKey);
-        const allImages = [...previousImages, ...newImages];
-        imageStorage.setProjectImages(projectKey, allImages);
-        updateProjectThumbnail(projectKey);
+        // Convert files to base64 and store
+        const promises = files.map(file => {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+          });
+        });
+        
+        Promise.all(promises).then(base64Images => {
+          const previousImages = imageStorage.getProjectImages(projectKey);
+          const allImages = [...previousImages, ...base64Images];
+          imageStorage.setProjectImages(projectKey, allImages);
+          updateProjectThumbnail(projectKey);
+        });
       }
       event.target.value = '';
     });
@@ -288,4 +336,44 @@ attachGalleryListeners();
 attachGalleryItemUploadListeners();
 attachProjectListeners();
 attachProjectItemUploadListeners();
+
+// Export/Import functionality
+const exportDataBtn = document.getElementById('exportDataBtn');
+const importDataBtn = document.getElementById('importDataBtn');
+const importDataFile = document.getElementById('importDataFile');
+const dataToggleBtn = document.getElementById('dataToggleBtn');
+const dataSection = document.querySelector('.data-section');
+
+dataToggleBtn.addEventListener('click', () => {
+  dataSection.style.display = dataSection.style.display === 'none' ? 'block' : 'none';
+});
+
+exportDataBtn.addEventListener('click', () => {
+  const data = imageStorage.exportData();
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'portfolio-data.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+importDataBtn.addEventListener('click', () => {
+  importDataFile.click();
+});
+
+importDataFile.addEventListener('change', event => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      imageStorage.importData(reader.result);
+    };
+    reader.readAsText(file);
+  }
+  event.target.value = '';
+});
 

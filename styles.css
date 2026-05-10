@@ -165,6 +165,26 @@ label {
   font-size: 1.2rem;
 }
 
+.data-toggle-btn {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.3s ease;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.data-toggle-btn:hover {
+  transform: scale(1.06);
+  background: var(--accent);
+  color: white;
+}
+
 /* Hero */
 .hero-section {
   padding-top: 1rem;
@@ -538,6 +558,39 @@ label {
 
 .project-upload-icon:active {
   transform: scale(0.95);
+}
+
+/* Data Export/Import Section */
+.data-section {
+  padding: 2rem 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.data-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.data-button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.data-button:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 /* Skills */

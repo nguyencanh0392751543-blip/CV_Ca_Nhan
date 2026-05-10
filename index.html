@@ -20,6 +20,7 @@
       </div>
       <div class="topbar-right">
         <span class="year-badge">2026</span>
+        <button id="dataToggleBtn" class="data-toggle-btn" title="Xuất/Nhập dữ liệu">💾</button>
         <label class="theme-switch" for="theme-toggle" aria-label="Bật chế độ tối">
           <span class="theme-icon">🌙</span>
         </label>
@@ -233,6 +234,17 @@
       </div>
     </section>
   </aside>
+
+  <!-- Export/Import Data Section -->
+  <section class="data-section" style="display: none;">
+    <div class="container">
+      <div class="data-controls">
+        <button id="exportDataBtn" class="data-button">📤 Xuất dữ liệu (để chia sẻ)</button>
+        <button id="importDataBtn" class="data-button">📥 Nhập dữ liệu</button>
+        <input type="file" id="importDataFile" accept=".json" style="display: none;" />
+      </div>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
