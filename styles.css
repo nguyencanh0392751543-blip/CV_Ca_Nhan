@@ -450,10 +450,10 @@ label {
 }
 
 .project-thumb-2 {
-  background: linear-gradient(180deg, #c17b3f 0%, #7c3e20 100%);
   background-image: url('../images/projects/in3d-printer.jpg');
   background-size: cover;
   background-position: center;
+  background-color: #c17b3f;
 }
 
 .project-thumb-3 {
