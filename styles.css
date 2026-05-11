@@ -13,25 +13,28 @@
   --brand-blue: #7fa8c5;
   --brand-blue-soft: rgba(126, 157, 184, 0.18);
   --deep-blue: #3f566c;
+  --overlay: rgba(79, 64, 47, 0.06);
   --shadow: 0 28px 60px rgba(79, 60, 28, 0.12);
 }
 
-.theme-toggle-input:checked ~ .page-shell {
-  --bg: #1f2737;
-  --surface: #2b3346;
-  --surface-strong: #343d52;
-  --surface-soft: rgba(255, 239, 208, 0.08);
-  --card: #3d475e;
-  --text: #f4e7d4;
-  --muted: #cbbaa3;
-  --border: rgba(239, 225, 203, 0.14);
+.theme-toggle-input:checked ~ .page-shell,
+body.dark-mode .page-shell {
+  --bg: #1a222f;
+  --surface: #2b3649;
+  --surface-strong: #354560;
+  --surface-soft: rgba(244, 234, 211, 0.09);
+  --card: #2e3d54;
+  --text: #f5e8d9;
+  --muted: #d0c4ac;
+  --border: rgba(244, 234, 211, 0.12);
   --accent: #d9a34b;
-  --accent-soft: rgba(217, 163, 75, 0.18);
-  --accent-strong: #f1c05d;
-  --brand-blue: #6c8dad;
-  --brand-blue-soft: rgba(126, 157, 184, 0.16);
-  --deep-blue: #60718d;
-  --shadow: 0 28px 60px rgba(0, 0, 0, 0.32);
+  --accent-soft: rgba(217, 163, 75, 0.16);
+  --accent-strong: #f1c85e;
+  --brand-blue: #778fab;
+  --brand-blue-soft: rgba(119, 139, 171, 0.14);
+  --deep-blue: #687c99;
+  --overlay: rgba(245, 232, 217, 0.08);
+  --shadow: 0 28px 60px rgba(0, 0, 0, 0.36);
 } 
 
 /* Base styles */
@@ -116,6 +119,18 @@ label {
   z-index: 0;
 }
 
+.theme-toggle-input:checked ~ .page-shell::before,
+body.dark-mode .page-shell::before {
+  background: radial-gradient(circle at 14% 12%, rgba(217, 163, 75, 0.12), transparent 20%),
+              radial-gradient(circle at 88% 15%, rgba(119, 139, 171, 0.10), transparent 18%),
+              radial-gradient(circle at 40% 88%, rgba(244, 234, 211, 0.18), transparent 32%);
+}
+
+.theme-toggle-input:checked ~ .page-shell::after,
+body.dark-mode .page-shell::after {
+  background: radial-gradient(circle, rgba(217, 163, 75, 0.16), transparent 60%);
+}
+
 .content {
   position: relative;
   z-index: 1;
@@ -169,15 +184,16 @@ label {
   align-items: center;
   padding: 1rem 1.5rem;
   gap: 1rem;
-  background: rgba(239, 226, 210, 0.92);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(18px);
 }
 
-.theme-toggle-input:checked ~ .page-shell .topbar {
-  background: rgba(37, 48, 63, 0.92);
+.theme-toggle-input:checked ~ .page-shell .topbar,
+body.dark-mode .topbar {
+  background: rgba(47, 61, 88, 0.92);
+  border-bottom-color: rgba(217, 163, 75, 0.08);
 }
-
 .topbar-left,
 .topbar-right {
   display: flex;
@@ -235,7 +251,7 @@ label {
   align-items: center;
   padding: 0.55rem 0.95rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--surface-soft);
   color: var(--text);
   font-size: 0.9rem;
   font-weight: 600;
@@ -244,7 +260,7 @@ label {
 
 .topbar-pill:hover,
 .year-badge:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(217, 163, 75, 0.12);
   transform: translateY(-1px);
 }
 
@@ -309,7 +325,7 @@ label {
 
 .hero-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
+  box-shadow: var(--shadow);
 }
 
 .hero-image-card {
@@ -325,8 +341,8 @@ label {
   border-radius: 32px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(180deg, rgba(217, 163, 75, 0.3) 0%, rgba(126, 157, 184, 0.18) 100%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, var(--accent-soft) 0%, var(--brand-blue-soft) 100%);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .hero-image-frame img {
@@ -339,7 +355,7 @@ label {
 .hero-photo-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(34, 19, 15, 0.05);
+  background: var(--overlay);
   opacity: 0;
   display: grid;
   place-items: center;
@@ -353,10 +369,18 @@ label {
 .photo-upload-button {
   padding: 0.95rem 1.35rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--surface-strong);
   color: var(--text);
   font-weight: 700;
   cursor: pointer;
+  border: 1px solid var(--border);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.photo-upload-button:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .hero-image-note {
@@ -397,10 +421,10 @@ label {
 .email-badge {
   padding: 0.9rem 1.15rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-soft);
   color: var(--text);
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--border);
   width: fit-content;
 }
 
@@ -440,7 +464,7 @@ label {
 .button-primary {
   background: var(--accent);
   color: var(--text);
-  box-shadow: 0 18px 34px rgba(217, 163, 75, 0.24);
+  box-shadow: 0 12px 28px rgba(217, 163, 75, 0.18);
 }
 
 .button-primary:hover {
@@ -478,7 +502,7 @@ label {
 
 .project-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
+  box-shadow: var(--shadow);
 }
 
 .project-thumb {
@@ -491,7 +515,7 @@ label {
 .project-card:hover .project-thumb {
   transform: scale(1.03);
   filter: brightness(1.02);
-  box-shadow: inset 0 0 0 1px rgba(126, 157, 184, 0.18);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .project-card:hover .project-thumb {
@@ -530,7 +554,7 @@ label {
   display: inline-flex;
   padding: 0.55rem 0.85rem;
   border-radius: 999px;
-  background: rgba(244, 140, 53, 0.16);
+  background: var(--accent-soft);
   color: var(--accent);
   font-weight: 700;
 }
@@ -645,7 +669,7 @@ label {
 
 .skill-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(34, 19, 15, 0.16);
+  box-shadow: var(--shadow);
 }
 
 .skill-card span {
@@ -710,7 +734,7 @@ label {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 10, 0.72);
+  background: rgba(0, 0, 0, 0.54);
   z-index: 90;
   transition: opacity 0.35s ease;
   backdrop-filter: blur(8px);
@@ -725,11 +749,11 @@ label {
   overflow-y: auto;
   border-radius: 32px;
   transform: translate(-50%, -50%) scale(0.94);
-  background: rgba(255, 247, 237, 0.98);
+  background: var(--surface-strong);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   z-index: 95;
-  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.45s ease, border-color 0.45s ease;
 }
 
 .modal-backdrop.active,
@@ -781,7 +805,7 @@ label {
 .slider-frame {
   overflow: hidden;
   border-radius: 28px;
-  background: #fff9f0;
+  background: var(--surface);
   min-height: 340px;
   display: grid;
   place-items: center;
